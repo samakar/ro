@@ -1,0 +1,56 @@
+<head>
+    <title>Todo List</title>
+</head>
+
+<template name="Main">
+  {{> Navigation}}
+  <div class="container">
+    {{#if currentUser}}
+      <div  class="col-md-4">
+        {{> Group_List}}
+      </div>
+    {{/if}}
+      <div  class="col-md-2"></div>
+      <div  class="col-md-6" style=" background-color: #fafafa;">
+        {{> yield}}
+      </div>
+    </div>
+
+  <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Copyright &copy; Todos, 2014-2016.</p>
+      </div>
+  </footer>
+</template>
+
+<template name="Navigation">
+  <nav class = "navbar navbar-default navbar-static-top" role = "navigation">
+    <div class="container">
+      <div class = "navbar-header">
+        <a class = "navbar-brand" href = "#">Todos</a>
+      </div>  
+      <div>
+        <ul class = "nav navbar-nav navbar-left">
+          <li  class = "active"><a href="{{pathFor route='home'}}">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+            <li><a href="#" class="logout">Logout</a></li>
+          {{else}}
+            <li><a href="{{pathFor route='register'}}">Register</a></li>
+            <li><a href="{{pathFor route='login'}}">Login</a></li>
+          {{/if}}
+        </ul>
+      </div>     
+    </div>     
+  </nav>
+</template>
+
+<template name="Group_Items">
+    <h2>List: {{name}}</h2>
+    {{>Item_List}}
+</template>
+
+<template name="Home">
+    <h2>Welcome to TODOS</h2>
+</template>

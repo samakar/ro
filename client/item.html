@@ -1,0 +1,31 @@
+<template name="Item_List">
+  <p>{{_id}}</p>
+  <p>{{> Add_Item_Form }}</p>
+  {{#if Template.subscriptionsReady}}
+    <ul  class="list-group">
+      {{#each items}}
+        {{> Item }}
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>loading...</p>
+  {{/if}}
+  <br/>
+  <div class="alert alert-info" role="alert"> {{totalCompleted}} of {{total}} are done.</div>
+  {{> Confirm id="confirmTask" bodyMsg="Are you sure?" titleMsg="Delete Task"}}  
+</template>
+
+<template name="Item">
+   <li class="task {{selected}} list-group-item"> 
+     <input type="checkbox" class="completed" {{checkedBox}}>
+     <input type="text"  class="{{completed}}" name="itemName" value="{{name}}">
+    <button type="button" class="remove btn btn-default btn-xs pull-right"  data-toggle="modal" data-target="#confirmTask">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>  </li>
+</template>
+
+<template name="Add_Item_Form">
+    <form>
+        Create a Task: <input type="text" name="itemName">
+    </form>
+</template>

@@ -1,0 +1,26 @@
+<template name="Group_List">
+  <p>
+    {{> Add_Group_Form }}
+  </p>
+  <ul class="group list-group"> 
+    {{#each groups}}
+      {{> Group }}
+    {{/each}}
+  </ul>
+  {{> Confirm id="confirm" bodyMsg="Are you sure?" titleMsg="Delete Group"}}
+</template>
+
+<template name="Group">
+  <li class="list-group-item">
+    <a href="{{pathFor route='listPage'}}">{{name}}</a>
+    <button type="button" class="remove btn btn-default btn-xs pull-right"  data-toggle="modal" data-target="#confirm">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+  </li>
+</template>
+
+<template name="Add_Group_Form">
+    <form id="groupNameForm">
+        Create a list: <input type="text" name="groupName">
+    </form>
+</template>
